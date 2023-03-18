@@ -23,35 +23,16 @@ class PhotoMinimalInformation extends StatelessWidget {
         margin: const EdgeInsets.symmetric(
           vertical: SizesTheme.md,
         ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: SizesTheme.xl,
+        child: ListTile(
+          title: Text(photo.title),
+          leading: Image.network(photo.thumbnailUrl),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => PhotoDetailPage(photo: photo),
               ),
-              child: Text(
-                photo.title,
-                textAlign: TextAlign.center,
-                style: kDarkSmallTitleTextStyle,
-              ),
-            ),
-            kSpacing,
-            Image.network(photo.thumbnailUrl),
-            kSpacing,
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: ColorsTheme.primary,
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => PhotoDetailPage(photo: photo),
-                  ),
-                );
-              },
-              child: const Text("Check"),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

@@ -42,6 +42,7 @@ A simple Flutter project to display blank photos.
 - Custom icon
 - Snack Bar bottom notification message
 - Floating button to return back to the top of the list
+- Filtering photos by title
 
 ## Opening project
 

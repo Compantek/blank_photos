@@ -3,9 +3,13 @@ import 'package:blank_photos/features/splash_screen/screens/splash_screen_page.d
 import 'package:blank_photos/providers/loading_provider.dart';
 import 'package:blank_photos/providers/photos_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   runApp(
     MultiProvider(
       providers: [

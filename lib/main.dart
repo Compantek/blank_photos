@@ -35,6 +35,9 @@ class MyApp extends StatelessWidget {
           backgroundColor: ColorsTheme.primary,
           centerTitle: true,
         ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: ColorsTheme.primary,
+        ),
       ),
       home: const SplashScreenPage(),
     );

@@ -5,20 +5,26 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PhotosList extends StatelessWidget {
-  const PhotosList({Key? key}) : super(key: key);
+  const PhotosList({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final ScrollController controller;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      controller: controller,
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
-      // itemCount: context.watch<Photos>().count,
-      itemCount: 25,
+      itemCount: context.watch<Photos>().count,
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.only(
             top: SizesTheme.md,
-            bottom: index == 25 - 1 ? SizesTheme.md : 0,
+            bottom:
+                index == context.watch<Photos>().count - 1 ? SizesTheme.md : 0,
             left: SizesTheme.md,
             right: SizesTheme.md,
           ),

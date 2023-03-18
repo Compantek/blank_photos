@@ -17,6 +17,13 @@ class PhotosPage extends StatefulWidget {
 }
 
 class _PhotosPageState extends State<PhotosPage> {
+  ScrollController scrollController = ScrollController();
+
+  void backToTop() {
+    final position = scrollController.position.maxScrollExtent;
+    scrollController.jumpTo(position);
+  }
+
   void generatingPhotos() async {
     context.read<Loading>().changeStatus(status: true);
 
@@ -62,7 +69,15 @@ class _PhotosPageState extends State<PhotosPage> {
                 ? GenerateButton(
                     action: generatingPhotos,
                   )
-                : const PhotosList(),
+                : PhotosList(
+                    controller: scrollController,
+                  ),
+            floatingActionButton: context.watch<Photos>().step == 1
+                ? null
+                : FloatingActionButton(
+                    onPressed: backToTop,
+                    child: const Icon(Icons.arrow_upward),
+                  ),
           );
   }
 }

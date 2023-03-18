@@ -19,24 +19,28 @@ class PhotosPage extends StatefulWidget {
 class _PhotosPageState extends State<PhotosPage> {
   void generatingPhotos() async {
     context.read<Loading>().changeStatus(status: true);
-    context.read<Photos>().changeStep(step: 2);
 
     PhotosService service = PhotosService();
-    List<dynamic>? data = await service.photosRequest();
-    if (data!.isNotEmpty) {
-      List<Photo> photos = service.photosTransform(data);
-      _changePhotos(photos);
-      _updateNotification(message: "Photos generated", status: true);
-    } else {
-      _updateNotification(message: "Server connection error", status: false);
+    try {
+      List<dynamic>? data = await service.photosRequest();
+      if (data != null) {
+        List<Photo> photos = service.photosTransform(data);
+        _changePhotos(photos);
+        _sendNotification(status: true, message: "Photos generated");
+      } else {
+        _sendNotification(status: false, message: "No photos");
+      }
+    } catch (e) {
+      _sendNotification(status: false, message: "No internet connection");
     }
   }
 
   void _changePhotos(List<Photo> photos) {
+    context.read<Photos>().changeStep(step: 2);
     context.read<Photos>().changePhotos(photos: photos);
   }
 
-  void _updateNotification({required bool status, required String message}) {
+  void _sendNotification({required bool status, required String message}) {
     context.read<Loading>().changeStatus(status: false);
 
     SnackBarMessage snackBarMessage = SnackBarMessage(

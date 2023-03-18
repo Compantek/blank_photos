@@ -12,6 +12,11 @@ const kLightBigTitleTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const kDarkSmallTitleTextStyle = TextStyle(
+  fontSize: SizesTheme.md,
+  fontWeight: FontWeight.w500,
+);
+
 const kSpacing = SizedBox(
   height: SizesTheme.sm,
 );

@@ -20,7 +20,7 @@ class _PhotosPageState extends State<PhotosPage> {
   ScrollController scrollController = ScrollController();
 
   void backToTop() {
-    final position = scrollController.position.maxScrollExtent;
+    final position = scrollController.position.minScrollExtent;
     scrollController.jumpTo(position);
   }
 

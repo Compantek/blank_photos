@@ -1,6 +1,11 @@
 import 'package:blank_photos/commons/theme.dart';
 import 'package:flutter/material.dart';
 
+const kPrimaryNormalTitleTextStyle = TextStyle(
+  color: ColorsTheme.primary,
+  fontSize: SizesTheme.lg,
+);
+
 const kLightNormalTitleTextStyle = TextStyle(
   color: ColorsTheme.light,
   fontSize: SizesTheme.lg,
